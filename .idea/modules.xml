@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../AssemblyCompletion/.idea/AssemblyCompletion.iml" filepath="$PROJECT_DIR$/../AssemblyCompletion/.idea/AssemblyCompletion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pythonProject2.iml" filepath="$PROJECT_DIR$/.idea/pythonProject2.iml" />
     </modules>
   </component>
 </project>
