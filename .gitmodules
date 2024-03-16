@@ -1,0 +1,3 @@
+[submodule "SimGNN"]
+	path = SimGNN
+	url = https://github.com/benedekrozemberczki/SimGNN.git
