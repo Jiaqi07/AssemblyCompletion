@@ -81,7 +81,7 @@ data_target.x = Y
 
 # Define the similarity score function
 def similarity_function(output1, output2):
-
+    
     return
 
 

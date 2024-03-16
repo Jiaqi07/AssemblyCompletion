@@ -1,0 +1,44 @@
+{
+    "1": {
+        "brick_id": 10,
+        "x": 36,
+        "y": 17,
+        "z": 1,
+        "ori": 1,
+        "press_side": 1,
+        "brick_seq": 1,
+        "color": [
+            0,
+            0,
+            0
+        ]
+    },
+    "2": {
+        "brick_id": 10,
+        "x": 30,
+        "y": 27,
+        "z": 1,
+        "ori": 1,
+        "press_side": 1,
+        "brick_seq": 1,
+        "color": [
+            0,
+            0,
+            0
+        ]
+    },
+    "3": {
+        "brick_id": 10,
+        "x": 31,
+        "y": 28,
+        "z": 1,
+        "ori": 1,
+        "press_side": 1,
+        "brick_seq": 1,
+        "color": [
+            0,
+            0,
+            0
+        ]
+    }
+}
