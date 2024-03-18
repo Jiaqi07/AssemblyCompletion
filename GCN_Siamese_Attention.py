@@ -9,9 +9,11 @@ from torch.nn.functional import cosine_similarity
 from data_loader import load_data_from_folder
 import networkx as nx
 from networkx.algorithms.isomorphism import ISMAGS
+import os
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
+
 
 class AttentionModule(torch.nn.Module):
     """
@@ -107,7 +109,8 @@ def calculate_mcs_sim(graph1, graph2):
     bigger_graph = max(graph1.number_of_nodes(), graph2.number_of_nodes())
     similarity_score = mcs_size / bigger_graph
     print(similarity_score)
-    return similarity_score
+    return torch.tensor(similarity_score, device=device).float()
+
 
 def to_networkx(data, to_undirected=True):
     G = nx.DiGraph() if not to_undirected else nx.Graph()
@@ -145,15 +148,17 @@ def train_model(gcn_model, siamese_model, optimizer, epochs=100):
             similarity_score = siamese_model(combined_embeddings)
             print(similarity_score)
 
-            # ToDo: a
             nx_graph_cur = to_networkx(data_cur, to_undirected=True)
             nx_graph_target = to_networkx(data_target, to_undirected=True)
-            mcs_size = calculate_mcs_sim(nx_graph_cur, nx_graph_target)  # FIGURE OUT HOW TO IMPLEMENT
+            mcs_size = calculate_mcs_sim(nx_graph_cur, nx_graph_target)
 
-            # Calculate MSE loss
             loss = F.mse_loss(similarity_score, mcs_size)
             loss.backward()
             optimizer.step()
             total_loss += loss.item()
 
         print(f'Epoch: {epoch + 1}, Loss: {total_loss / 100}')
+
+        torch.save(gcn_model.state_dict(), f'model/gcn_model_{epochs*100}.pth')
+        torch.save(siamese_model.state_dict(), f'model/siamese_model_{epochs*100}.pth')
+        print(f'Models saved as {epochs*100}\n')

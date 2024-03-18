@@ -18,6 +18,7 @@ def load_data_from_folder(root_folder):
         save_export_path = os.path.join(path, 'save', 'it10000-export', 'task_graph.json')
 
         if os.path.exists(save_export_path):
+            print(save_export_path)
             with open(save_export_path, 'r') as file:
                 file_data = json.load(file)
 
@@ -38,14 +39,15 @@ def load_data_from_folder(root_folder):
             for dest in dests:
                 dest_idx = node_mapping[dest]
                 edge_index.append([src_idx, dest_idx])
+        print(edge_index)
         return torch.tensor(edge_index, dtype=torch.long).t().contiguous()
 
     def extract_node_features(assembly_list):
         cur_node_features = []
         for piece_id, piece in assembly_list.items():
             features = [
-                piece['x'],
-                piece['y'],
+                # piece['x'],
+                # piece['y'],
                 piece['z'],
                 lego_lib[piece['brick_id']]['height'],
                 lego_lib[piece['brick_id']]['width'],
